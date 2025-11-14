@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Tiroteios Salvador - Histórico Diário</title>
+</head>
+<body>
+  <h2>Ocorrências do dia em Salvador</h2>
+  <div id="resultado">Carregando...</div>
+
+  <script>
+    async function carregarDados() {
+      // Determina o arquivo do dia automaticamente
+      let hoje = new Date().toISOString().slice(0, 10); // yyyy-mm-dd
+      let url = `tiroteios_salvador_${hoje}.json`; // Precisa estar no repositório
+      try {
+        let resposta = await fetch(url);
+        let dados = await resposta.json();
+        document.getElementById("resultado").innerText =
+          `Ocorrências hoje: ${dados.length}`;
+      } catch {
+        document.getElementById("resultado").innerText =
+          `Arquivo não encontrado para ${hoje}`;
+      }
+    }
+    carregarDados();
+  </script>
+</body>
+</html>
