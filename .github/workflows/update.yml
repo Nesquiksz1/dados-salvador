@@ -15,13 +15,13 @@ jobs:
       - name: Rodar script coletor
         run: python coletar_historico.py
       - name: Salvar alterações e enviar ao GitHub
-       run: |
-  git config user.name "github-actions"
-  git config user.email "actions@github.com"
-  git add .
-  if git diff --cached --quiet; then
-    echo "Nada para commitar."
-  else
-    git commit -m "Atualização automática"
-    git push
-  fi
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add .
+          if git diff --cached --quiet; then
+            echo "Nada para commitar."
+          else
+            git commit -m "Atualização automática"
+            git push
+          fi
